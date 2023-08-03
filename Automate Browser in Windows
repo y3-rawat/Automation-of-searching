@@ -1,0 +1,205 @@
+### Before Running this you have good understanding of basic Python + Pyautogui Library
+To understand this code properly 
+------------ visit on ->  https://youtu.be/qIJpBz6R2Uw
+
+
+import pyautogui as p
+
+import time
+import keyboard as k
+import timeit
+import numpy as np
+start = timeit.default_timer()
+points = 0
+p.FAILSAFE = False
+# -------------------------------------------------------------------------------------------------------
+searchBox = 568,48#391, 60
+Profile_location_Dev = 24,18
+Profile_location_Edge = 1157,52
+Profile_location_Beta = 17,35
+position_of_beta = 1
+HowMuchShift_And_TabToGetThelastProfile_in_Beta = 2
+# -------------------------------------------------------------------------------------------------------
+text = []
+_keywords = [
+    "Apache HBase", "Sociology", "Anthropology",
+    "Psychology", "Economics", "Political Science", "History", "Geography", "Archaeology",
+    "Linguistics", "Social Work", "Demography", "Cultural Studies", "International Relations", "Development Studies", "Gender Studies", "Criminology", "Social Psychology", "Public Administration", "Urban Studies", "Education", "Social Policy", "Sociolinguistics", "Sociocultural", "Socioeconomic", "Sociopolitical", "Sociobiology", "Sociometry", "Sociotechnical", "Sociolegal", "Sociomoral", "Socioeconomic", "Sociocognitive", "Sociolinguistic", "Sociocultural Anthropology", "Social and Cultural Anthropology",
+    "Social Cognitive Theory", "Social Constructivism", "Social Interactionism",
+    "Social Learning Theory", "Socialization Process", "Social Identity Theory", "Social Norms",
+    "Social Institutions", "Socialization", "Social Capital", "Social Network Analysis", "Social Change", "Social Determinants of Health", "Social Justice", "Social Inequality", "Social Movements", "Social Policy Analysis", "Social Research Methods", "Social Theory", "Behavioral Economics", "Sociolinguistic Variation", "Sociocultural Factors", "Sociopolitical Climate", "Sociobiological Perspective", "Sociometric Techniques", "Sociotechnical Systems", "Sociolegal Studies", "Sociomoral Development",
+    "Socioeconomic Status", "Sociocognitive Processes", "Sociolinguistic Research",
+    "Sociocultural Anthropologists", "Social and Cultural Anthropology", "Social Cognitive Development", "Social Constructivist Approach", "Social Interaction Patterns", "Social Learning Processes", "Socialization Agents", "Social Identity Formation", "Social Norms and Values", "Social Institutions and Structures", "Socialization in Childhood", "Social Capital Theory", "Social Network Analysis", "Social Change and Development",
+    "Social Determinants of Health", "Social Justice and Equity",
+    "Social Inequality and Stratification", "Social Movements and Collective Action",
+    "Social Policy Analysis", "Social Research Methods and Design", "Social Theory and Critique", "Quantitative Research Methods", "Qualitative Research Methods", "Mixed Methods Research", "Survey Research", "Experimental Research Design", "Ethnographic Research", "Interview-based Research", "Content Analysis", "Case Study Research", "Grounded Theory", "Historical Research", "Policy Analysis", "Critical Theory", "Feminist Theory", "Postcolonial Theory", "Symbolic Interactionism", "Structural Functionalism",
+    "Conflict Theory", "Rational Choice Theory", "Social Capital Theory", "Postmodernism",
+    "Poststructuralism", "Social Constructionism", "Intersectionality", "Social Identity", "Socialization", "Deviance and Social Control", "Social Movements and Collective Behavior", "Family and Intimate Relationships", "Education and Schools", "Work and Labor", "Health and Medicine", "Globalization and Transnationalism", "Poverty and Social Inequality", "Race, Ethnicity, and Immigration", "Gender and Sexuality",
+    "Age and Aging", "Crime and Criminal Justice", "Politics and Power", "Culture and Cultural Studies",
+    "Media and Communication", "Environment and Society", "Urban and Rural Sociology", "Social Networks and Social Media", "Community and Social Capital", "Social Policy and Welfare", "Organizations and Bureaucracy", "Technology and Society", "Theory and Methods in Social Science",
+    "Apache Cassandra", "MongoDB", "Elasticsearch", "Databricks", "Jupyter Notebook",
+    "Git", "Docker", "AWS", "Azure", "Google Cloud Platform", "Data Science Lifecycle", "Problem Formulation", "Data Collection", "Data Cleaning", "Data Exploration", "Feature Engineering", "Model Development", "Model Evaluation", "Model Deployment", "Model Monitoring", "Ethical Considerations", "Bias in Data Science", "Fairness in Machine Learning", "Explainable AI", "Interpretable Models", "Model Interpretation", "Model Explainability", "Model Governance", "Model Explainability", "Model Documentation",
+    "Model Deployment", "Model Monitoring", "Model Performance", "Scalability", "Productionization",
+    "Model Serving", "Model Maintenance", "Continuous Learning", "Data Science Careers", "Data Scientist", "Data Analyst", "Machine Learning Engineer", "Data Engineer", "Statistician", "Data Visualization Specialist", "AI Researcher", "Data Science Jobs", "Job Roles", "Skills Required", "Educational Background", "Certifications", "Data Science Interviews", "Technical Interviews", "Behavioral Interviews",
+    "Case Studies", "Portfolio Projects", "Career Advancement", "Network", "Router",
+    "Switch", "Firewall", "LAN", "WAN", "Ethernet", "TCP/IP", "IP Address", "Subnet Mask", "Gateway", "DNS", "DHCP", "VPN", "Proxy", "Wi-Fi", "Access Point", "SSID", "Encryption", "Network Security", "Intrusion Detection System", "Intrusion Prevention System", "Network Monitoring", "Network Management", "Network Architecture", "Network Topology", "Network Protocol", "OSI Model", "TCP", "UDP", "IPv4", "IPv6", "Routing", "Routing Protocol", "Routing Table", "BGP", "OSPF", "RIP", "VLAN", "STP", "Load Balancing",
+    "Port Forwarding", "NAT", "Virtualization", "Virtual LAN", "Virtual Private Network",
+    "Cloud Networking", "Software-Defined Networking", "SD-WAN", "Network Performance", "Latency", "Bandwidth", "Throughput", "Packet Loss", "Quality of Service", "Network Troubleshooting", "Ping", "Traceroute", "Wireshark", "Network Sniffing", "Packet Analysis", "Network Segmentation", "Network Redundancy", "High Availability", "Fault Tolerance", "Network Backup", "Disaster Recovery", "Network Documentation", "Network Diagram", "Cable Management", "Network Auditing", "Network Compliance", "Network Policy", "Network Monitoring Tools", "Network Scanner", "Network Analyzer", "Network Simulator", "Network Simulator-2", "GNS3", "Packet Tracer", "Wi-Fi Analyzer",
+    "Network Security Tools", "Firewall", "Intrusion Detection System", "Intrusion Prevention System",
+    "Antivirus", "Antimalware", "SIEM", "Vulnerability Scanner", "Penetration Testing",
+    "Ethical Hacking", "Network Hardening", "Network Access Control", "User Authentication", "Data Encryption", "Network Forensics", "Network Forensics Analysis", "Digital Forensics", "Network Incident Response", "Network Monitoring Software", "Wi-Fi Security", "Wireless Security", "Network Governance", "Network Policies", "Network Standards", "Network Compliance", "Network Certification", "CCNA", "CCNP", "CompTIA Network+", "Network Administration", "Network Engineer", "Network Technician", "Network Analyst",
+    "Network Architect", "Network Security Specialist", "Network Operations Center",
+    "Network Design", "Network Planning", "Network Deployment", "Network Optimization", "Network Upgrade", "Network Migration", "Network Infrastructure", "Local Area Network", "Wide Area Network", "Campus Network", "Data Center Network", "Enterprise Network", "Home Network", "Wireless Network", "Mobile Network", "Internet of Things", "IoT", "Cloud Computing", "Software-Defined Network", "Network Function Virtualization", "Network Automation", "Software-Defined WAN", "Network Orchestration", "Network as a Service",
+    "Network Monitoring and Management", "Network Performance Monitoring", "Network Traffic Analysis", "Network Capacity Planning", "Network-Attached Storage", "Network Monitoring System", "Network Testing", "Network Load Testing", "Network Emulation", "Network Traffic Generator", "Network Simulator", "Network Virtualization", "Network Visualization", "Network Reliability", "Network Scalability", "Network Resilience", "Network Governance", "Network Compliance", "Network Configuration", "Network Automation", "Network Scripting", "Network Scripting Language", "Network Security Policy",
+    "Network Security Architecture", "Network Segmentation", "Network Intrusion",
+    "Network Intrusion Detection", "Network Intrusion Prevention", "Network Incident", "Network Incident Response", "Network Incident Management", "Network Backup", "Network Disaster Recovery", "Network Resilience", "Network Fault Tolerance", "Network High Availability", "Network Performance Optimization", "Network Performance Monitoring", "Network Bandwidth", "Network Latency", "Network Throughput", "Network Packet Loss", "Network Quality of Service", "Network Monitoring Tools", "Network Troubleshooting", "Network Diagnostic", "Network Documentation", "Network Diagram", "Network Cabling", "Network Wiring", "Network Infrastructure", "Network Asset Management",
+    "Network Auditing", "Network Compliance", "Network Inventory", "Network Management System",
+    "Network Monitoring System", "Network Configuration Management", "Network Change Management", "Network Incident Management", "Network Problem Management", "Network Performance Management", "Network Security Management", "Network Governance", "Network Security Policies", "Network Access Control", "Network Authentication", "Network Authorization", "Network Encryption", "Network Firewall", "Network Intrusion Detection System", "Network Intrusion Prevention System", "Network Security Auditing",
+    "Network Security Assessment", "Network Vulnerability Assessment", "Network Penetration Testing",
+    "Network Risk Management", "Network Compliance Standards", "Network Compliance Regulations", "Network Compliance Audits", "Network Security Standards", "Network Security Certifications",
+    "Network Security Best Practices", "Network Security Awareness", "Network Security Training",
+    "Network Security Incident Response", "Network Security Incident Management", "Network Security Forensics", "Network Security Monitoring", "Network Security Operations", "Network Security Controls", "Network Security Architecture", "Network Security Infrastructure", "Network Security Hardening", "Network Security Patch Management", "Network Security Threats", "Network Security Attacks", "Network Security Solutions", "Network Security Services",
+    "Network Security Products", "Network Security Vendors", "Network Security Trends", "Network Security Challenges", "Network Security Risks", "Network Security Strategies", "Network Security Policies", "Network Security Procedures", "Network Security Guidelines", "Network Security Awareness", "Network Security Education", "Network Security Careers", "Network Security Jobs", "Network Security Roles", "Network Security Skills", "Network Security Certifications", "Network Security Training"
+]
+
+
+# -------------------------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------------------------
+#______________________________Dev_beta______________________________________
+def dev_beta():
+    c = HowMuchShift_And_TabToGetThelastProfile_in_Beta
+    time.sleep(0.5)
+    for i in range(3):
+        k.press_and_release('win + 1')
+        time.sleep(0.5)
+        p.click(Profile_location_Beta)
+        time.sleep(0.5)
+        for j in range(c):
+            time.sleep(0.3)
+            k.press_and_release('shift + tab')
+        k.press_and_release('enter')
+        time.sleep(0.3)
+        time.sleep(0.5)
+        k.press_and_release(f'win + {position_of_beta}')
+        c += 1
+    WebScreen()
+    mobilecode()
+
+# _______________________________Devcode_____________________________________
+def dev():
+    c = 2
+    time.sleep(0.5)
+    for i in range(14):
+        k.press_and_release('win + 2')
+        time.sleep(0.5)
+        p.click(Profile_location_Dev)         
+        time.sleep(0.5)
+        for j in range(c):
+            time.sleep(0.3)
+            k.press_and_release('shift + tab')
+        k.press_and_release('enter')
+        time.sleep(0.3)
+        WebScreen()
+        mobilecode()
+        time.sleep(0.5)
+        c += 1
+# _______________________________Edge code_________________________________
+
+
+def Edge():
+    t = 8
+    time.sleep(0.5)
+    for i in range(15):
+        time.sleep(0.4)
+        k.press_and_release('win + 1')
+        time.sleep(1)
+        # p.click(1476, 50) THIS IS FOR BIGMONITER
+        p.click(Profile_location_Edge)
+        print(profile)
+        time.sleep(0.5)
+        for j in range(t):
+            time.sleep(0.3)
+            k.press_and_release('shift + tab')
+            time.sleep(0.4)
+        k.press_and_release('enter')
+        time.sleep(0.9)
+        WebScreen()
+        mobilecode()
+        time.sleep(0.5)
+        t += 1
+
+
+# ________________________________Web__________________________________________
+points = 0
+
+
+def WebScreen():
+
+    k.press_and_release('ctrl+t')
+    time.sleep(1)
+    p.click(searchBox, duration=0.1)
+    for i in range(70):
+        ra = np.random.randint(1, len(_keywords))
+        text.append(_keywords[ra])
+    webtext = list(set(text[1:40]))  # ----------------
+    for i in webtext:
+        count = 1
+        if count > 35:
+            break
+        else:
+            p.click(391, 58, duration=0.1)
+            p.typewrite(i, interval=0.05)
+            k.press_and_release("enter")
+
+            time.sleep(0.7)
+            count += 1
+    time.sleep(0.6)
+    # ----------chat
+    # a = p.locateOnScreen('chat.PNG', confidence=0.9)
+    # p.click(a)
+    # time.sleep(2)
+    # b = p.locateOnScreen('StopResponding.PNG', confidence=0.9)
+    # p.click(b)
+    # time.sleep(2)
+    # c = p.locateOnScreen('searchbox.PNG', confidence=0.9)
+    # p.click(c)
+    # time.sleep(1)
+    # p.typewrite('tell me about some trending topics on google')
+    # time.sleep(0.3)
+    # k.press_and_release('enter')
+# _______________________________Mobile__________________________________________
+
+
+def mobilecode():
+    k.press_and_release('ctrl+t')
+    time.sleep(0.9)
+    k.press_and_release('ctrl + shift + i')
+    time.sleep(0.5)
+    for i in range(70):
+        ra = np.random.randint(1, 37)
+        text.append(_keywords[ra])
+        mobtext = list(set(text[35:1:-1]))
+    P_count = 1
+    for i in mobtext:
+        if P_count > 25:
+            break
+        p.click(391, 58, duration=0.1)
+        p.typewrite(i)
+        time.sleep(0.6)
+        k.press_and_release('enter')
+        time.sleep(0.7)
+    k.press_and_release('ctrl+t')
+    p.typewrite('https://www.msn.com/en-us/shopping')
+    time.sleep(0.4)
+    k.press_and_release('enter')
+    time.sleep(1)
+
+
+# Edge()
+# dev() 
+dev_beta()
+
+
+stop = timeit.default_timer()
+print('Time: ', stop - start)
