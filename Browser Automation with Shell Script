@@ -1,4 +1,4 @@
-"""This is the script of Automate Searches in Browser
+"""This is the script of Automate Searches in Browser +++++++++++++++++++ FOR LINUX
 
 -----------------Some points related to this 
 1. ((xdg-settings set default-web-browser microsoft-edge-beta.desktop)) -- this is the code to set your browser 
