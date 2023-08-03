@@ -102,7 +102,6 @@ mobile() {
 
     done
 }
-
 M_Beta() {
     count1=2
     sleep 0.5
