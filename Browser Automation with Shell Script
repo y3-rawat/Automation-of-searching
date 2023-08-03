@@ -1,3 +1,20 @@
+"""This is the script of Automate Searches in Browser
+
+-----------------Some points related to this 
+1. ((xdg-settings set default-web-browser microsoft-edge-beta.desktop)) -- this is the code to set your browser 
+
+2. xdotool mousemove 518 60 click 1 {line No. 81 & 96 &125 } ``` this is the location of search bar
+3. in mobile(line No. 89) -- first you have to visit in every profiles and open mobile view via (ctrl + shift +i ) then set it on mobile mode
+4. count1(Line No. 107) =2 -- this is the last profile count 
+            ----- click on profile button 
+            ----- press "Shift + Tab" until you haven't reach to the last profile + count mannualy how much time you are pressing shift + tab
+5. i<29 (Line No. 109) -- 29 is the number of profiles which is present in your one browser
+
+6.((xdotool mousemove 20 42 click 1) Line No. 115 ) -> this is the location of profile"""
+
+
+
+
 #!/bin/bash
 xdg-settings set default-web-browser microsoft-edge-beta.desktop
 url="https://www.youtube.com/shorts/RD4uvHeQY7k"
